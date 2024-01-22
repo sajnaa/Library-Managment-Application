@@ -1,0 +1,55 @@
+
+    <section class="bg-light py-3 py-md-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+            <div class="card border border-light-subtle rounded-3 shadow-sm">
+              <div class="card-body p-3 p-md-4 p-xl-5">
+                <h2 class="fs-6 fw-normal text-center text-secondary mb-4">profile</h2>
+        
+    
+    <form [formGroup]="editForm" (ngSubmit)="saveChanges()">
+      
+    
+        <div class="form-group">
+            <label for="username">Usename:</label>
+            <input
+              type="text"
+              id="username"
+              formControlName="username"
+              class="form-control"
+            />
+          </div>
+      
+        <div class="form-group">
+          <label for="password">password:</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            class="form-control"
+          />
+        </div>
+    
+       
+    
+        <div class="modal-footer">
+          
+          <button
+            type="submit"
+            class="btn btn-primary"
+           
+          >
+           update
+          </button>
+        </div>
+      </form>
+      <div *ngIf="updateSuccess" class="alert alert-success mt-3">
+        <p>updated successfully successfully!</p>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>

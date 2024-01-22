@@ -1,0 +1,170 @@
+
+
+<div *ngIf="role === 'admin'">
+  <button class="btn btn-primary createbutton" (click)="goToCreateBookPage()">create</button>
+
+</div>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Status</th>
+      <th scope="col"  *ngIf="role === 'admin'">Current User</th>
+      <th scope="col">Actions</th> 
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books">
+      <td>{{ book.id }}</td>
+      <td>{{ book.title }}</td>
+      <td>{{ book.authorName }}</td>
+      <td>{{ book.description }}</td>
+      <td>{{ book.status }}</td>
+      <td *ngIf="role === 'admin'">{{ book.userName?book.userName:'-'}}</td>
+      <td>
+   
+   <div *ngIf="role === 'admin'; then thenBlock else elseBlock"></div>
+   <ng-template #thenBlock>
+     <button class="text-secondary" (click)="editBook(book.id)">Edit</button>
+     <button class="text-danger" (click)="deleteBook(book.id)">Delete</button>
+     <!-- <button class="text-secondary" (click)="viewUserList(book.id)">View User List</button> -->
+   </ng-template>
+   <ng-template #elseBlock>
+
+     <div *ngIf="getUserAccess(book.users); then thenBlock else elseBlock"></div>
+     <ng-template #thenBlock>
+    <!-- <div *ngIf=" getUserAccessBook(book)"> -->
+
+       <button class="text-secondary" (click)="viewBook(book.id)">View Book</button>
+       <button class="text-secondary" (click)="returnBook(book.id)">Return Book</button>
+      <!-- </div> -->
+     </ng-template>
+     <ng-template #elseBlock>
+      <div *ngIf=" getUserAccessBook(book)">
+       <button class="text-secondary" (click)="getBook(book.id)">Get Book</button>
+      </div>
+     </ng-template>
+   
+
+   </ng-template>
+ 
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ 'display': displayStyle }"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">edit book details</h4>
+        <button type="button" class="close" aria-label="Close" (click)="closePopup()">  
+          <span aria-hidden="true">close</span>  
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Reactive form for title, authorName, description -->
+        <form [formGroup]="editForm" (ngSubmit)="updateBook()">
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input
+              type="text"
+              id="title"
+              formControlName="title"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="authorName">Author Name:</label>
+            <input
+              type="text"
+              id="authorName"
+              formControlName="authorName"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea
+              id="description"
+              formControlName="description"
+              class="form-control"
+            ></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-danger" (click)="closePopup()">
+              Close
+            </button> -->
+            <button style="width: 30%;"
+              type="submit"
+              class="btn btn-primary"
+             
+            >
+             update
+            </button>
+          </div>
+        </form>
+        <div *ngIf="updateSuccess" class="alert alert-success mt-3">
+          <p> updated successfully!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div
+class="modal"
+tabindex="-1"
+role="dialog"
+[ngStyle]="{ 'display':  displayViewStyle }"
+>
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">View book details</h4>
+      <button type="button" class="close" aria-label="Close" (click)="viewClosePopup()">  
+        <span aria-hidden="true">close</span>  
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque est unde sunt quam fugiat nihil totam optio harum ratione laborum adipisci, obcaecati perferendis eveniet nesciunt odit voluptates dignissimos repudiandae! Quibusdam saepe ad possimus nulla? Molestias architecto similique corporis necessitatibus rerum perferendis ex expedita dolorum illum sit, rem nisi eum magni maxime in laudantium blanditiis possimus. Obcaecati ipsam incidunt blanditiis in temporibus, dicta debitis quasi perspiciatis totam ex voluptates eaque iure architecto sit, dolorem nemo culpa dignissimos ad, aperiam voluptatibus? Nesciunt adipisci voluptatibus placeat ratione magnam commodi harum, ipsum totam laboriosam quidem non neque molestias. Facere deserunt harum, ipsa veritatis sunt exercitationem? Laboriosam culpa atque ducimus placeat officia a, ea commodi pariatur laborum modi excepturi, dolore temporibus natus eveniet itaque accusamus nemo veritatis consequuntur reprehenderit praesentium. Quibusdam est ad explicabo ipsam amet provident. Impedit placeat in nulla, temporibus pariatur minus cum voluptate aliquam ducimus dicta? Inventore officia tempore neque aliquam nihil.</p>
+    </div>
+  </div>
+</div>
+</div>
+<!-- <div
+class="modal"
+tabindex="-1"
+role="dialog"
+[ngStyle]="{ 'display':  displayViewlistuserStyle }"
+>
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">View book details</h4>
+      <button type="button" class="close" aria-label="Close" (click)="viewUserClosePopup()">  
+        <span aria-hidden="true">close</span>  
+      </button>
+    </div>
+    <div class="modal-body">
+      <ul>
+        <li *ngFor="let userList of userList">
+          <h3>{{ userList }}</h3>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div> -->

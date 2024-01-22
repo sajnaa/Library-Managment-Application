@@ -1,0 +1,58 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "password": "sajna123",
+      "role": "admin",
+      "id": "1",
+      "books": []
+    },
+    {
+      "username": "user",
+      "password": "sajna123",
+      "role": "user",
+      "id": "2",
+      "books": [
+       
+      ]
+    },
+    {
+      "username": "sajna",
+      "password": "sajna123",
+      "role": "user",
+      "id": "3",
+      "books": []
+    }
+  ],
+  "books": [
+    {
+      "id": "1",
+      "authorName": "11",
+      "title": "wr43",
+      "description": "gtg",
+      "status": "available",
+      "userId": "1",
+      "users": []
+    },
+    {
+      "id": "2",
+      "authorName": "34",
+      "title": "grt",
+      "description": "fgg",
+      "status": "available",
+      "userId": "1",
+      "users": [
+       
+      ]
+    },
+    {
+      "id": "3",
+      "authorName": "33",
+      "title": "egtr",
+      "description": "fht",
+      "status": "available",
+      "userId": "1",
+      "users": []
+    }
+  ]
+}

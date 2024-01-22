@@ -1,0 +1,25 @@
+
+ 
+    <div class="container-fluid menu">
+      <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 d-md-block sidebar">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" routerLink="/allbooks"routerLinkActive="active" >ALlBooks</a>
+            </li>
+              <li class="nav-item" *ngIf="role === 'admin'">
+                <a class="nav-link"  routerLink="/listuser">Users</a>
+              </li>
+            
+            <li class="nav-item">
+              <a class="nav-link"  routerLink="/adminprofile">profile</a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+  
+

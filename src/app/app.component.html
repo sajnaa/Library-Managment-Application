@@ -1,0 +1,29 @@
+
+ <!-- <div *ngIf="isAuthenticated; else login"> -->
+  <!-- <app-adminpage></app-adminpage> -->
+ <!-- </div> -->
+<!-- <ng-template #login> -->
+  <!-- <div *ngIf="myRouter.url==='/login'; else register"> -->
+  <!-- <app-login></app-login> -->
+
+  <!-- </div>
+<ng-template #register>
+  <app-register></app-register>
+
+</ng-template> -->
+<!-- </ng-template>   -->
+
+<!-- <router-outlet></router-outlet> -->
+<div *ngIf="isAuthenticated; else login">
+  <app-adminpage></app-adminpage>
+</div>
+  <ng-template #login>
+    <div *ngIf="currentUrl === '/login'; else register">
+      <app-login></app-login>
+    </div>
+  </ng-template>
+  <ng-template #register>
+    <app-register></app-register>
+  </ng-template>
+
+  

@@ -1,0 +1,41 @@
+
+<div *ngIf="creatbooksccess" class="alert alert-success mt-3">
+  <p>User registered successfully!</p>
+</div>
+<form [formGroup]="createBookForm" (ngSubmit)="onSubmit()">
+  <div class="row gy-2 overflow-hidden">
+    <div class="col-12">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" formControlName="authorName" placeholder="Author Name" required>
+        <label for="authorName" class="form-label">Author Name</label>
+        <div *ngIf="createBookForm.get('authorName')!.invalid && (createBookForm.get('authorName')!.dirty || createBookForm.get('authorName')!.touched)" class="text-danger">
+          <div *ngIf="createBookForm.get('authorName')!.errors?.['required']">Author Name is required.</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" formControlName="title" placeholder="Title" required>
+        <label for="title" class="form-label">Title</label>
+        <div *ngIf="createBookForm.get('title')!.invalid && (createBookForm.get('title')!.dirty || createBookForm.get('title')!.touched)" class="text-danger">
+          <div *ngIf="createBookForm.get('title')!.errors?.['required']">Title is required.</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" formControlName="description" placeholder="Description" required>
+        <label for="description" class="form-label">Description</label>
+        <div *ngIf="createBookForm.get('description')!.invalid && (createBookForm.get('description')!.dirty || createBookForm.get('description')!.touched)" class="text-danger">
+          <div *ngIf="createBookForm.get('description')!.errors?.['required']">Description is required.</div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="d-grid my-3">
+        <button class="btn btn-primary btn-lg" type="submit"  [disabled]="!createBookForm.valid">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>

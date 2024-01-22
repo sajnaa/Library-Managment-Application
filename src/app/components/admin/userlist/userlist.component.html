@@ -1,0 +1,91 @@
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">username</th>
+        <th scope="col">Action</th>
+        
+      </tr>
+    </thead>
+    <tbody>  
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+
+        <td>
+          <div >
+            <button class="text-secondary" (click)="getdata(user.id)">View</button>
+
+         
+          </div>
+                
+             </td>
+      </tr>
+    </tbody>
+  </table>
+
+  
+  
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [ngStyle]="{ 'display': displayStyle }"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">view user details</h4>
+          <button type="button" class="close" aria-label="Close" (click)="closePopup()">  
+            <span aria-hidden="true">close</span>  
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Reactive form for title, authorName, description -->
+          <form [formGroup]="editForm" (ngSubmit)="limitupdate()">
+            <div class="form-group">
+              <label for="id">Id:</label>
+              <input
+                type="text"
+                id="id"
+                formControlName="id"
+                class="form-control"
+           readonly
+              />
+            </div>
+  
+            <div class="form-group">
+              <label for="username">UserName:</label>
+              <input
+                type="text"
+                id="username"
+                formControlName="username"
+                class="form-control"
+                readonly
+              />
+            </div>
+  
+            <div class="form-group">
+              <label for="collectedBooks">CollectedBooks:</label>
+              <input
+                type="text"
+                id="collectedBooks"
+                formControlName="collectedBooks"
+                class="form-control"
+                readonly
+              />
+            </div>
+            <div class="form-group">
+              <label for="borrowedBooks">BorrowedBooks:</label>
+              <h6>Example heading <span class="badge badge-secondary"></span></h6>
+            </div>
+           
+          
+            
+          </form>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+  
